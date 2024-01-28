@@ -2,6 +2,7 @@
 ---
 - name: users | create (default hosts)
   community.mysql.mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     name: "{{ item[0].name }}"
     password: "{{ item[0].password }}"
     priv: "{{ item[0].privs | join('/') }}"
@@ -16,6 +17,7 @@
 
 - name: users | create (custom hosts)
   community.mysql.mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     name: "{{ item[0].name }}"
     password: "{{ item[0].password }}"
     priv: "{{ item[0].privs | join('/') }}"
@@ -30,6 +32,7 @@
 
 - name: users | drop (default hosts)
   community.mysql.mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     name: "{{ item[0].name }}"
     host: "{{ item[1] }}"
     state: absent
@@ -42,6 +45,7 @@
 
 - name: users | drop (custom hosts)
   community.mysql.mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     name: "{{ item[0].name }}"
     host: "{{ item[1] }}"
     state: absent
