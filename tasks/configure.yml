@@ -24,16 +24,6 @@
       tags:
         - percona-server-configure-first-run-service-stop
 
-    - name: configure | remove (excessive) configuration files
-      ansible.builtin.file:
-        path: "{{ item }}"
-        state: absent
-      with_items:
-        - /etc/mysql/percona-server.cnf
-        - /etc/mysql/percona-server.conf.d
-      tags:
-        - percona-server-configure-first-run-cleanup
-
 - name: configure | update (global) configuration file
   ansible.builtin.template:
     src: "{{ percona_server_etc_mysql_my_cnf.lstrip('/') }}.j2"
